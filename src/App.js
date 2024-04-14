@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Card from "./Card";
+import { products } from "./productsData";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main className="container">
+        {products.map((product) => (
+          <Card {...product} />
+        ))}
+      </main>
+      <section className="container">
+        <div className="block-listing">
+          <span className="badge-1">Random 1</span>
+          <span className="badge-2">Random 2</span>
+          <span className="badge-3">Random 3</span>
+          <span className="badge-4">Random 4</span>
+        </div>
+        <div className="banner"></div>
+      </section>
     </div>
   );
 }

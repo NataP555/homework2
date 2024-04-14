@@ -1,25 +1,27 @@
+import React, { useState } from "react";
 
-import Card from "./Card";
-import { products } from "./productsData";
+import Form from "./components/Form";
+import Users from './components/Users';
+
 import "./App.css";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const submitHandler = (e) => {
+    setIsLoggedIn(true);
+  };
+
+  if (isLoggedIn) {
+    return (
+      <Users />
+    );
+  }
+
   return (
     <div className="App">
-      <main className="container">
-        {products.map((product) => (
-          <Card {...product} />
-        ))}
-      </main>
-      <section className="container">
-        <div className="block-listing">
-          <span className="badge-1">Random 1</span>
-          <span className="badge-2">Random 2</span>
-          <span className="badge-3">Random 3</span>
-          <span className="badge-4">Random 4</span>
-        </div>
-        <div className="banner"></div>
-      </section>
+      <h1>App</h1>
+      <Form onSubmit={submitHandler}/>
     </div>
   );
 }

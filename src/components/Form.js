@@ -1,46 +1,35 @@
-import { toBeRequired } from "@testing-library/jest-dom/matchers";
 import React, { useState } from "react";
 
-import Users from './Users';
 import FormInput from "./FormInput";
 
 const email = 'digitalAcademy@gmail.com';
 const pass = 'iLoveReact123';
 
 
+const config = [
+  {
+    label: 'email',
+    placeholder: 'email',
+    name: 'email'
+  },
+  {
+    label: 'password',
+    placeholder: 'password',
+    name: 'password'
+  }
+];
 
-const Form = () => {
+
+const Form = (props) => {
+  const { onSubmit } = props;
+
   const [user, setUser] = useState({ email: "", password: "" });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
   const disabled = user.email !== email || user.password !== pass;
 
-  const submitHandler = (e) => {
-    setIsLoggedIn(true);
-  };
-
-  if (isLoggedIn) {
-    return (
-      <Users />
-    );
-  }
-
-  const settings = [
-    {
-      label: 'email',
-      placeholder: 'email',
-      name: 'email'
-    },
-    {
-      label: 'password',
-      placeholder: 'password',
-      name: 'password'
-    }
-  ];
 
   return (
-    <form onSubmit={submitHandler}>
-      {settings.map(field => (
+    <form onSubmit={onSubmit}>
+      {config.map(field => (
         <FormInput
           key={field.name}
           name={field.name}

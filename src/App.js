@@ -6,7 +6,7 @@ import Users from './components/Users';
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const submitHandler = (e) => {
     setIsLoggedIn(true);

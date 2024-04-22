@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import FormInput from "./FormInput";
 
@@ -21,11 +21,10 @@ const config = [
 
 
 const Form = (props) => {
-  const { onSubmit } = props;
+  const { onSubmit, name } = props;
 
   const [user, setUser] = useState({ email: "", password: "" });
   const disabled = user.email !== email || user.password !== pass;
-
 
   return (
     <form onSubmit={onSubmit}>

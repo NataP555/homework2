@@ -24,15 +24,7 @@ const Form = (props) => {
   const { onSubmit, name } = props;
 
   const [user, setUser] = useState({ email: "", password: "" });
-  const [data, setData] = useState([]);
   const disabled = user.email !== email || user.password !== pass;
-
-  useEffect(() => {
-    fetch('SOME URL').then((data) => {
-      setData(data);
-    })
-  }, [])
-
 
   return (
     <form onSubmit={onSubmit}>

@@ -2,48 +2,36 @@ import React, { useState, useEffect } from "react";
 
 import FormInput from "./FormInput";
 
-const config = [
-  {
-    label: "email",
-    placeholder: "email",
-    name: "email",
-  },
-  {
-    label: "name",
-    placeholder: "name",
-    name: "name",
-  },
-];
-
 const FilterInputs = (props) => {
   const { onSearch } = props;
 
-  const [searchData, setSearchData] = useState({ email: "", name: "" });
+  const [search, setSearch] = useState("");
+  const [filterName, setFilterName] = useState("email");
 
   function handleSearch() {
-    onSearch(searchData);
+    onSearch(search, filterName);
+  }
+
+  function toggleFilterName() {
+    setFilterName(filterName === "email" ? "name" : "email");
   }
 
   return (
-    <div style={{
-        display: 'flex',
-        width: '100%',
-    }}>
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+      }}
+    >
+      <button onClick={toggleFilterName}>{filterName}</button>
       <form>
-        {config.map((field) => (
-          <FormInput
-            key={field.name}
-            name={field.name}
-            label={field.label}
-            placeholder={field.placeholder}
-            onInput={(e) => {
-              setSearchData((prev) => ({
-                ...prev,
-                [e.target.name]: e.target.value,
-              }));
-            }}
-          />
-        ))}
+        <FormInput
+          name={filterName}
+          placeholder={"enter " + filterName}
+          onInput={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
       </form>
       <button onClick={handleSearch}>Search </button>
     </div>
